@@ -7,6 +7,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
  * 打包war包必须配置
+ * spring容器必须只有在这个文件目录下面的所有目录和文件
  * @author OLE
  * @date 2016/10/17
  */
