@@ -6,5 +6,5 @@
     </typeAliases>
     <!-- <mappers>
         <mapper resource="com/spring/model/*.xml"/>
-    </mappers> -->
+    </mappers>  -->
 </configuration>
