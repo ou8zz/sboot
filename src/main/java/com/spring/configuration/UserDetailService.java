@@ -3,12 +3,16 @@ package com.spring.configuration;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.spring.model.Guser;
+import com.utils.RegexUtil;
 
 /**
  * security 登录用户校验
@@ -16,17 +20,33 @@ import com.spring.model.Guser;
  * @date 2016/10/26
  */
 public class UserDetailService implements UserDetailsService {
+	private static final Logger logger = Logger.getLogger(UserDetailService.class);
+	
+	@Autowired
+	private SqlSession sqlSession;
 	
 	@Override
 	public UserDetails loadUserByUsername(String uname) {
 		Collection<GrantedAuthority> auths = new ArrayList<GrantedAuthority>();
 		Guser u = new Guser();
 		u.setEname(uname);
-		u.setPwd("c4ca4238a0b923820dcc509a6f75849b");
 		try {
-			GrantedAuthority granted = new SimpleGrantedAuthority("ROLE_USER");
-			auths.add(granted);
+			u = sqlSession.selectOne("guser.getGusers", u);
+			if(u ==null){
+				logger.error("user \"" + uname + "\" not exist, please check again!");
+			} else {
+				u = sqlSession.selectOne("guser.getGuserDetil", new Guser(u.getId()));
+				if(RegexUtil.notEmpty(u.getRole())) {
+					GrantedAuthority granted = new SimpleGrantedAuthority("ROLE_"+u.getRole());
+					auths.add(granted);
+				}
+				if(RegexUtil.notEmpty(u.getPosition())) {
+					GrantedAuthority granted = new SimpleGrantedAuthority("ROLE_"+u.getPosition());
+					auths.add(granted);
+				}
+			}
 		} catch (Exception e) {
+			logger.error("get user role is faild", e);
 		}
 		// 获得用户的权限，设置权限
 		GuserDetails gud = new GuserDetails(u, auths);

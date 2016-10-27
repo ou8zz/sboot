@@ -1,42 +1,49 @@
 package com.spring.controllers;
 
-import java.util.Date;
+import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.model.Guser;
-import com.spring.services.UserService;
+import com.spring.services.AdminService;
+import com.spring.services.GuserService;
 
+/**
+ * @description 后台用户管理
+ * @author <a href="mailto:ou8zz@sina.com">OLE</a>
+ * @date 2016/05/29
+ * @version 1.0
+ */
 @Controller
+@Scope(value="request")
 public class IndexController {
-
-	@Autowired
-	private UserService userService;
+//	private Log log = LogFactory.getLog(IndexController.class);
+//	private RespsonData rd = new RespsonData("success");			// 通用返回JSON对象
 	
-	@RequestMapping(method=RequestMethod.GET, value={"/login"})
+	@Resource(name="guserService")
+	private GuserService guserService;
+	
+	@Resource(name="adminService")
+	private AdminService adminService;
+	
+	/**
+	 * 登录
+	 */
+	@RequestMapping(method=RequestMethod.GET, value="login")
 	public String login() {
 		return "login";
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, value="/index")
-	public String index() {
-		return "index";
-	}
-	
-	@RequestMapping(method=RequestMethod.POST, value="/index")
-	@ResponseBody
-	public Object index(Model model) {
-		Guser u = new Guser();
-		u.setCname("中国");
-		u.setEname("china");
-		u.setId(1);
-		u.setBirthday(new Date());
-		Guser su = userService.getUsers(u);
-		return su;
+	/**
+	 * 首页
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(method=RequestMethod.GET, value={"/app/index", "/audit/index", "/admin/index"})
+	public String rolePage(Model model) {
+		return "app/index";
 	}
 }

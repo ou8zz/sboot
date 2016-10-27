@@ -5,7 +5,6 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -21,14 +20,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
-        // login
-		http.authorizeRequests().antMatchers("/", "/h2/**", "/global/**").permitAll().anyRequest().authenticated()
-        .and().formLogin().loginPage("/login").loginProcessingUrl("/web_login").successForwardUrl("/index")
+        // filter
+		http.authorizeRequests().antMatchers("/", "/h2/**", "/global/**", "/login.html").permitAll().anyRequest().authenticated();
+		
+		// login
+        http.formLogin().loginPage("/login").loginProcessingUrl("/web_login").successForwardUrl("/index")
         .failureHandler(authenticationFailureHandler())
         .successHandler(authenticationSuccessHandler()).permitAll();
         
         // logout
-        http.logout().logoutUrl("/logout").logoutSuccessHandler(new LogoutHandle()).permitAll();
+        http.logout().logoutUrl("/logout").logoutSuccessUrl("/login").logoutSuccessHandler(new LogoutHandle()).permitAll();
         
         // rememberme
         http.rememberMe().tokenRepository(persistentTokenRepository()).tokenValiditySeconds(1209600);
@@ -38,14 +39,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().disable();
     }
     
+	/**
+	 * 登录校验处理
+	 * 这里需要使用bean的方式拿才能在userDetailService中拿到sqlSession
+	 * 通过configure方式设置auth.userDetailService拿不到sqlSession
+	 */
+	@Bean
+	protected UserDetailService userDetailsService() {
+		return new UserDetailService();
+	}
 	
 	/**
 	 * 登录校验处理
-	 */
+	
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(new UserDetailService());
-    }
+    } */
 	
 	/**
 	 * rememberme 数据库配置
