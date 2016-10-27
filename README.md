@@ -1,7 +1,7 @@
 #spring boot framework
 
 ##遇到的问题
-* mybatis中使用like在mysql中表达式可以用like "%"#{name}"%"，但是h2数据库中不能支持，根据我收集的资料来看like concat(concat('%',#{name}),'%')可以支持h2,mysql,oracle
+* mybatis中使用like在mysql中表达式可以用like "%"#{name}"%"，但是h2数据库中不能支持，根据我测试来看like concat(concat('%',#{name}),'%')可以支持h2,mysql,oracle
 * h2数据库中datetime类型或者timestamp类型中默认是23位长度2016-08-13 20:43:44.402 而mysql中是19位2016-08-13 20:43:44，然而在使用between时h2数据库因为后面的3位会匹配不到那条数据，因为传参时默认变成了2016-08-13 20:43:44.000
 * 今天发现form表单自动提交情况说明：  <br/>
 	1.默认情况下，单个输入框，无论按钮的type="submit"还是type="button"类型，回车即提交。   <br/>
