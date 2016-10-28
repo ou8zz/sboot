@@ -11,7 +11,7 @@
 	    	<if test="id != null and id != ''"> and id=#{id} </if>
 	    	<if test="ename != null and ename != ''"> and ename like concat(concat('%',#{ename}),'%') </if>
 	    	<if test="cname != null and cname != ''"> and cname like concat(concat('%',#{cname}),'%') </if>
-   	    	<if test="gtype != null and gtype != ''"> and gtype=#{gtype} </if>
+   	    	<if test="gtype != null"> and gtype=#{gtype} </if>
    	    </where>
 	</select>
 	

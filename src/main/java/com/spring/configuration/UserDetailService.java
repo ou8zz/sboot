@@ -3,8 +3,9 @@ package com.spring.configuration;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,7 +21,7 @@ import com.utils.RegexUtil;
  * @date 2016/10/26
  */
 public class UserDetailService implements UserDetailsService {
-	private static final Logger logger = Logger.getLogger(UserDetailService.class);
+	private static final Log log = LogFactory.getLog(UserDetailService.class);
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -33,7 +34,7 @@ public class UserDetailService implements UserDetailsService {
 		try {
 			u = sqlSession.selectOne("guser.getGusers", u);
 			if(u ==null){
-				logger.error("user \"" + uname + "\" not exist, please check again!");
+				log.error("user \"" + uname + "\" not exist, please check again!");
 			} else {
 				u = sqlSession.selectOne("guser.getGuserDetil", new Guser(u.getId()));
 				if(RegexUtil.notEmpty(u.getRole())) {
@@ -46,7 +47,7 @@ public class UserDetailService implements UserDetailsService {
 				}
 			}
 		} catch (Exception e) {
-			logger.error("get user role is faild", e);
+			log.error("get user role is faild", e);
 		}
 		// 获得用户的权限，设置权限
 		GuserDetails gud = new GuserDetails(u, auths);

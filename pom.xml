@@ -11,7 +11,7 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<parent>
@@ -29,7 +29,8 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- <dependency>
+		<!-- thymeleaf替代web
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<exclusions>
@@ -44,9 +45,22 @@
 			</exclusions>
 		</dependency> -->
 
+		<!-- 使用jetty服务器过滤掉tomcat -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-jetty</artifactId>
+		    <scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -74,12 +88,12 @@
 			<version>4.1.6</version>
 		</dependency>
 
-		<!-- maven打war包需要，spring boot的jsp项目必须是war项目，jar项目不支持jsp -->
+		<!-- maven打war包需要，spring boot的jsp项目必须是war项目，jar项目不支持jsp 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>-->
 	
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -98,8 +112,8 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			

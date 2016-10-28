@@ -4,19 +4,20 @@
 <meta charset="utf-8"/>
 <title>首页</title>
 <!-- 引入框架通用css标签 -->
-<th:block th:include="common/header :: head"></th:block>
+<!--/*/ <th:block th:include="common/header :: head"></th:block> /*/-->
 </head>
+
 <body class="page-header-fixed page-quick-sidebar-over-content">
 
 <!-- 引入框架通用头部 -->
-<th:block th:include="common/header :: htop"></th:block>
+<!--/*/ <th:block th:include="common/header :: htop"></th:block> /*/-->
 
 <div class="page-container">
 
 	<div class="page-sidebar-wrapper">
 		<div class="page-sidebar navbar-collapse collapse">
 			<!-- BEGIN SIDEBAR MENU -->
-			<ul class="page-sidebar-menu page-sidebar-menu-light" data-keep-expanded="true" data-auto-scroll="true" data-slide-speed="200"  id="tree"></ul>
+			<ul class="page-sidebar-menu page-sidebar-menu-light" data-keep-expanded="true" data-auto-scroll="true" data-slide-speed="200" id="tree"></ul>
 			<!-- END SIDEBAR MENU -->
 		</div>
 	</div>
@@ -24,8 +25,8 @@
 	<div class="page-content-wrapper">
 		<div class="page-content">
 	
-			<h4 class="page-title">首页1<small></small></h4>
-			<ol class="breadcrumb"><li class="active"><i class="fa fa-home"></i> <a href="index">首页1</a></li></ol>
+			<h4 class="page-title">首页<small></small></h4>
+			<ol class="breadcrumb"><li class="active"><i class="fa fa-home"></i> <a href="index">首页</a></li></ol>
 			
 			<div class="row">
 			</div>
@@ -35,6 +36,6 @@
 </div>
 
 <!-- 引入框架通用script标签 -->
-<th:block th:include="common/footer :: footer"></th:block>
+<!--/*/ <th:block th:include="common/footer :: footer"></th:block> /*/-->
 </body>
 </html>

@@ -30,6 +30,15 @@ public class IndexController {
 	private AdminService adminService;
 	
 	/**
+	 * 空白首页
+	 * @return
+	 */
+	@RequestMapping("/")
+    public String home() {
+        return "app/index";
+    }
+	
+	/**
 	 * 登录
 	 */
 	@RequestMapping(method=RequestMethod.GET, value="login")

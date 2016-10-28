@@ -1033,7 +1033,7 @@ insert into ztree (ID, ICO, NAME, NODE, POSITION, ROLE, TITLE, URL, PARENTID, ME
 insert into ztree (ID, ICO, NAME, NODE, POSITION, ROLE, TITLE, URL, PARENTID, MENUTYPE) values (49, 'fa-github-alt', '用户维护', 490000, 'Manager', 'Admin', '用户管理', '/admin/users', 47, 1);
 insert into ztree (ID, ICO, NAME, NODE, POSITION, ROLE, TITLE, URL, PARENTID, MENUTYPE) values (50, 'fa-puzzle-piece', '部门维护', 500000, 'Manager', 'Admin', '用户组管理', '/admin/department', 47, 1);
 insert into ztree (ID, ICO, NAME, NODE, POSITION, ROLE, TITLE, URL, PARENTID, MENUTYPE) values (52, 'fa-inbox', '角色维护', 520000, 'Manager', 'Admin', '角色维护', '/admin/role', 47, 1);
-insert into ztree (ID, ICO, NAME, NODE, POSITION, ROLE, TITLE, URL, PARENTID, MENUTYPE) values (53, 'fa-sitemap', '菜单管理', 530000, 'Manager', 'Admin', '菜单管理', '/admin/ztree', 47, 1);
+insert into ztree (ID, ICO, NAME, NODE, POSITION, ROLE, TITLE, URL, PARENTID, MENUTYPE) values (53, 'fa-sitemap', '菜单配置', 530000, 'Manager', 'Admin', '菜单配置', '/admin/menus', 47, 1);
 insert into ztree (ID, ICO, NAME, NODE, POSITION, ROLE, TITLE, URL, PARENTID, MENUTYPE) values (56, 'fa-hospital-o', '操作日志', 560000, 'Manager', 'Admin', '操作日志', '/app/logs', 47, 1);
 insert into ztree (ID, ICO, NAME, NODE, POSITION, ROLE, TITLE, URL, PARENTID, MENUTYPE) values (70, 'fa-file-code-o', '临时公告查询', 700000, 'Manager', 'User', '临时公告查询', 'files', null, 1);
 insert into ztree (ID, ICO, NAME, NODE, POSITION, ROLE, TITLE, URL, PARENTID, MENUTYPE) values (80, 'fa-first-order', '法律法规库', 800000, null, null, '法律法规库', null, null, null);

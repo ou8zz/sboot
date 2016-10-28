@@ -1,13 +1,4 @@
-<!-- <%@ page import="com.util.SessionUtil"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<% 
-	String pageTitle = request.getParameter("pageTitle");
-	Integer uid = SessionUtil.getUserId(request.getSession());
-	String uname = SessionUtil.getUserEname(request.getSession());
-%> -->
-
-<!--<![endif]-->
-<!-- BEGIN HEAD -->
+<!-- 系统框架通用头部和css -->
 <head>
 <meta charset="utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -26,14 +17,18 @@
 <link rel="stylesheet" type="text/css" href="../global/layout/css/layout.css"/>
 <link rel="stylesheet" type="text/css" href="../global/layout/css/themes/default.css" id="style_color" />
 <link rel="shortcut icon" type="image/png" href="../favicon.ico"/>
-<script type="text/javascript">
-var sessionUid = '1';
-var sessionUname = 'aaa';
+<!-- 获取session中的用户对象
+	 th:inline="javascript" 表示JS中取值方式
+	 th:with 设置在script这个标签作用域下面的临时变量
+ -->
+<script type="text/javascript" th:inline="javascript" th:with="u=${session.SPRING_SECURITY_CONTEXT.authentication.principal.guser}">
+var sessionUid = /*[[${u.id}]]*/;
+var sessionUname = /*[[${u.ename}]]*/;
 </script>
 </head>
 
 <div th:fragment="htop">
-<div class="page-header navbar navbar-fixed-top">
+<div class="page-header navbar navbar-fixed-top" th:with="u=${session.SPRING_SECURITY_CONTEXT.authentication.principal.guser}">
 	<!-- BEGIN HEADER INNER -->
 	<div class="page-header-inner">
 		<!-- BEGIN LOGO -->
@@ -282,7 +277,7 @@ var sessionUname = 'aaa';
 					<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 <!-- 					<img alt="" class="img-circle" src="../global/layout/img/avatar3_small.jpg"/> -->
 					<i class="icon-user"></i>
-					<span class="username username-hide-on-mobile"><!-- <%=uname %> --></span>
+					<span class="username username-hide-on-mobile" th:text="${u.cname}">user</span>
 					<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-default">
