@@ -3,12 +3,8 @@ package com.spring.configuration;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -39,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.logout().logoutUrl("/logout").logoutSuccessHandler(logoutHandle()).permitAll();
         
         // rememberme
-        http.rememberMe().tokenRepository(persistentTokenRepository()).tokenValiditySeconds(1209600);
+        http.rememberMe().rememberMeParameter("rememberme").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(1209600);
         
         // 登录校验处理
         http.userDetailsService(userDetailsService());
@@ -99,19 +95,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected LogoutHandle logoutHandle() {
 		return new LogoutHandle();
 	}
-
-	@Bean
-	protected EmbeddedServletContainerCustomizer containerCustomizer() {
-	    return new EmbeddedServletContainerCustomizer(){
-	        @Override
-	         public void customize(ConfigurableEmbeddedServletContainer container) {
-	        	ErrorPage e400 = new ErrorPage(HttpStatus.BAD_REQUEST, "/error/400");
-	    		ErrorPage e403 = new ErrorPage(HttpStatus.FORBIDDEN, "/error/403");
-	    		ErrorPage e404 = new ErrorPage(HttpStatus.NOT_FOUND, "/error/404");
-	    		ErrorPage e500 = new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/error/500");
-	    		container.addErrorPages(e400, e403, e404, e500);
-	        }
-	    };
-	}
-
 }

@@ -29,6 +29,11 @@
 			<optional>true</optional>
 		</dependency>
 
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>springloaded</artifactId>
+		</dependency>
+
 		<!-- thymeleaf替代web
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -51,6 +56,10 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 			<exclusions>
 				<exclusion>
+					<artifactId>log4j-over-slf4j</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 				</exclusion>
@@ -68,6 +77,12 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc14</artifactId>
+			<version>10.2.0.4.0</version>
+		</dependency>
+	
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -100,6 +115,13 @@
 			<artifactId>gson</artifactId>
 		</dependency>
 	
+		<dependency>
+	      <groupId>log4j</groupId>
+	      <artifactId>log4j</artifactId>
+	      <version>1.2.14</version>
+	      <scope>runtime</scope>
+	   </dependency>
+   
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

@@ -1,6 +1,7 @@
 package com.spring.controllers;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -52,7 +53,7 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.GET, value={"/app/index", "/audit/index", "/admin/index"})
-	public String rolePage(Model model) {
+	public String rolePage(Model model, HttpServletRequest req) {
 		return "app/index";
 	}
 }

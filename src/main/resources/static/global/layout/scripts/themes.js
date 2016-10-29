@@ -166,7 +166,7 @@ var Themes = function() {
 				// 默认cookie有效期416天（单位秒）
 				expires : 3600,
 				// 默认cookie存储路径
-				path : "/bkm",
+				path : "/",
 				// 是否加密cookie
 				secure : false
 			};

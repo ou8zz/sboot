@@ -14,6 +14,10 @@ import com.spring.model.Guser;
  * @version 1.0
  */
 public class SessionUtil {
+	public static String bb() {
+		return "bb";
+	}
+	
 	private static SecurityContext attribute;
 	
 	/**
