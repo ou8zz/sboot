@@ -22,8 +22,9 @@
 	 th:with 设置在script这个标签作用域下面的临时变量
  -->
 <script type="text/javascript" th:inline="javascript" th:with="u=${session.SPRING_SECURITY_CONTEXT.authentication.principal.guser}">
-var sessionUid = /*[[${u.id}]]*/;
-var sessionUname = /*[[${u.ename}]]*/;
+var sessionUid = /*[[${u.id}]]*/;									// 取得session中的用户id
+var sessionUname = /*[[${u.ename}]]*/;								// 取得session中的用户名
+var contextPath = /*[[${#ctx.httpServletRequest.contextPath}]]*/;	// 获取当前server.contextPath
 </script>
 </head>
 

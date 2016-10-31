@@ -136,10 +136,12 @@ $(function() {
 				// 数据在初始json时默认所有节点是关闭的，以下处理只是为当前url的界面进行节点的展开
 				var nids = $.cookie('treeOpen_');
 				$.each(responseData, function(i, e) {
+					var rd = responseData[i];
+					rd.url=contextPath+rd.url; 	//默认给每一个url加上contextPath
 					if(ztree_temp_url.indexOf(e.url) > 8) {
 						$.each(responseData, function(j, w) {
 							if(e.pId==w.id) {
-								responseData[j].open=true;
+								rd.open=true;
 								return;
 							}
 						});
@@ -151,7 +153,7 @@ $(function() {
 						var ids = nids.split(',');
 						for(var k in ids) {
 							if(e.id==ids[k]) {
-								responseData[i].open=true;
+								rd.open=true;
 								return;
 							}
 						}

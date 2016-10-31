@@ -166,12 +166,12 @@ var Themes = function() {
 				// 默认cookie有效期416天（单位秒）
 				expires : 3600,
 				// 默认cookie存储路径
-				path : "/",
+				path : contextPath?contextPath:'/',
 				// 是否加密cookie
 				secure : false
 			};
-        	
-            // handles style customer tool
+
+			// handles style customer tool
             handleTheme();
 
             // set layout style from cookie
