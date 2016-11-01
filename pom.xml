@@ -69,7 +69,6 @@
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-jetty</artifactId>
-		    <scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -145,5 +144,16 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
 		</plugins>
+
+		<!--还有在IDEA环境中maven编译mybatis的xml加载不到，设置maven编译时将xml文件放进去-->
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
 </project>
