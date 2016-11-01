@@ -34,4 +34,26 @@ eqauls方法必须保证一致（如果对象没有被修改，equals应该返�
 * 在SpringMVC中Controller中如果使用respose.getWriter就不能使用@ResponseBody注解，否则报错java.lang.IllegalStateException: WRITER
 * SrpingBoot约定大于配置的方式：springAOP容器处于在SpringBootApplication文件所在的包下。而error自定义配置文件在templates/error文件目录下，自定义error页面需要在配置中关闭原始错误提示页面server.error.whitelabel.enabled=false。
 * 使用Thymeleaf 和jsp遇到一个include的问题，jsp中可以将页面元素拆开来进行导入，比如jsp我可以把一个html中从任意一段拆开做成通用的common.jsp，然后所有页面对这个jsp进行行include, 而thymeleaf因为是基于xml所以不能将不规则的标签统一设定成一个common.html，需要保证标签的完整性（如完整的head，完整的div，script需要用div包起来），再进行include。
+* SpringBoot从eclipse切换IDEA环境中运行启动： java.lang.IllegalStateException: Could not evaluate condition on org.springframework.boot.autoconfigure.PropertyPlaceholderAutoConfiguration#propertySourcesPlaceholderConfigurer due to internal class not found. This can happen if you are @ComponentScanning a springframework package (e.g. if you put a @ComponentScan in the default package by mistake)
+    at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:51)
+tomcat or jetty 配置去掉scope
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jetty</artifactId>
+    <scope>provided</scope>
+</dependency>
+```
+* 还有在IDEA环境中maven编译mybatis的xml加载不到，设置maven编译时将xml文件放进去
+```
+<resources>
+	<resource>
+		<directory>src/main/java</directory>
+		<includes>
+			<include>**/*.xml</include>
+		</includes>
+		<filtering>true</filtering>
+	</resource>
+</resources>
+```
 * 先就这么多。后续再补充
