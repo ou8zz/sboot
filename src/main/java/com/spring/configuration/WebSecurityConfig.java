@@ -1,11 +1,14 @@
 package com.spring.configuration;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
@@ -14,10 +17,10 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    
+
 	@Autowired
 	protected DataSource dataSource;
-	
+
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         // filter
@@ -28,6 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// login
         http.formLogin().loginPage("/login").loginProcessingUrl("/web_login")
+		.usernameParameter("uname").passwordParameter("upwd")
         .failureHandler(authenticationFailureHandler())
         .successHandler(authenticationSuccessHandler()).permitAll();
         
@@ -36,15 +40,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         
         // rememberme
         http.rememberMe().rememberMeParameter("rememberme").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(1209600);
-        
-        // 登录校验处理
-        http.userDetailsService(userDetailsService());
-        
-        // 关闭csrf
+
+		// 关闭csrf
         http.csrf().disable();
         http.headers().disable();
     }
-    
+
+	/**
+	 * 登录校验处理
+	 * @param ole
+	 * @throws Exception
+	 */
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService());
+	}
+
 	/**
 	 * 登录校验处理
 	 * 这里需要使用bean的方式拿才能在userDetailService中拿到sqlSession

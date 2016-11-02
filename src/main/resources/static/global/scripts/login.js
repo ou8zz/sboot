@@ -41,12 +41,12 @@ var Login = function() {
 	            }
 	        });
 	};
-	
+
 	var login = function() {
 		if(!loginForm.valid()) return false;
 		loginForm.find('div.alert').addClass('display-hide');
 		var mask = layer.load(0, {shade: [0.2,'#000']});
-		var upwd = loginForm.find('input[name=password]');
+		var upwd = loginForm.find('input[name=upwd]');
 		upwd.val($.md5(upwd.val()));
 		$.post('web_login', loginForm.serialize(), function(data) {
 			if(data.result == 'SUCCESS') {
