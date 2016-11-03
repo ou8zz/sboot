@@ -63,7 +63,7 @@ public class AdminController {
 	
 	/**
 	 * 角色列表
-	 * @param id
+	 * @param p
 	 * @return
 	 */
 	@PreAuthorize(value="hasRole('Admin')")
@@ -118,7 +118,7 @@ public class AdminController {
 	
 	/**
 	 * 删除
-	 * @param u
+	 * @param id
 	 * @return
 	 */
 	@PreAuthorize(value="hasRole('Admin')")

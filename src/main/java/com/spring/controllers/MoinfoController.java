@@ -61,8 +61,8 @@ public class MoinfoController {
 	
 	/**
 	 * 获取机构信息,托管人信息列表
-	 * @param paramer 分页对象
-	 * @param fundManagers
+	 * @param p 分页对象
+	 * @param m
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/getMoinfo")
@@ -81,7 +81,7 @@ public class MoinfoController {
 	
 	/**
 	 * 添加机构信息,托管人信息
-	 * @param Section
+	 * @param m
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/addMoinfo")
@@ -99,7 +99,7 @@ public class MoinfoController {
 	
 	/**
 	 * 编辑机构信息,托管人信息
-	 * @param Section
+	 * @param m
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/editMoinfo")
@@ -117,7 +117,7 @@ public class MoinfoController {
 	
 	/**
 	 * 删除机构信息,托管人信息
-	 * @param Section
+	 * @param m
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/delMoinfo")

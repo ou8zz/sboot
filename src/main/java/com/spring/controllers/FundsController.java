@@ -57,7 +57,7 @@ public class FundsController {
 	
 	/**
 	 * 获取基金经理配置列表
-	 * @param paramer 分页对象
+	 * @param p 分页对象
 	 * @param fundManagers
 	 * @return
 	 */
@@ -77,7 +77,7 @@ public class FundsController {
 	
 	/**
 	 * 添加基金经理
-	 * @param Section
+	 * @param fm
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/addFundManagers")
@@ -95,7 +95,7 @@ public class FundsController {
 	
 	/**
 	 * 编辑基金经理
-	 * @param Section
+	 * @param fm
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/editFundManagers")
@@ -113,7 +113,7 @@ public class FundsController {
 	
 	/**
 	 * 删除基金经理
-	 * @param Section
+	 * @param fm
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/delFundManagers")
@@ -131,8 +131,8 @@ public class FundsController {
 	
 	/**
 	 * 获取基金产品信息列表
-	 * @param paramer 分页对象
-	 * @param fundInfo
+	 * @param p 分页对象
+	 * @param fi
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/getFundInfo")
@@ -151,7 +151,7 @@ public class FundsController {
 	
 	/**
 	 * 添加基金经理
-	 * @param Section
+	 * @param fi
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/addFundInfo")
@@ -169,7 +169,7 @@ public class FundsController {
 	
 	/**
 	 * 编辑基金经理
-	 * @param Section
+	 * @param fi
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/editFundInfo")
@@ -187,7 +187,7 @@ public class FundsController {
 	
 	/**
 	 * 删除基金经理
-	 * @param Section
+	 * @param fi
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/delFundInfo")

@@ -52,8 +52,8 @@ public class SectionController {
 	
 	/**
 	 * 获取章节配置列表
-	 * @param paramer 分页对象
-	 * @param Section
+	 * @param p 分页对象
+	 * @param sc
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/getSectionConfig")
@@ -72,7 +72,7 @@ public class SectionController {
 	
 	/**
 	 * 导出章节配置
-	 * @param Section
+	 * @param sc
 	 * @return
 	 */
 	@RequestMapping(method={RequestMethod.POST, RequestMethod.GET}, value="/audit/expSectionConfig")
@@ -98,7 +98,7 @@ public class SectionController {
 	
 	/**
 	 * 添加章节配置
-	 * @param Section
+	 * @param sc
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/addSectionConfig")
@@ -116,7 +116,7 @@ public class SectionController {
 	
 	/**
 	 * 编辑章节配置
-	 * @param Section
+	 * @param sc
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/editSectionConfig")
@@ -134,7 +134,7 @@ public class SectionController {
 	
 	/**
 	 * 删除章节配置
-	 * @param Section
+	 * @param sc
 	 * @return
 	 */
 	@RequestMapping(method=RequestMethod.POST, value="/audit/delSectionConfig")
