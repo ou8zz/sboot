@@ -26,16 +26,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/app/**").hasAnyAuthority("ROLE_User","ROLE_Admin","ROLE_Audit")
 		.antMatchers("/audit/**").hasAnyAuthority("ROLE_Admin","ROLE_Audit")
 		.antMatchers("/admin/**").hasAuthority("ROLE_Admin").anyRequest().authenticated();
-		
+
 		// login
         http.formLogin().loginPage("/login").loginProcessingUrl("/web_login")
 		.usernameParameter("uname").passwordParameter("upwd")
         .failureHandler(authenticationFailureHandler())
         .successHandler(authenticationSuccessHandler()).permitAll();
-        
+
         // logout
         http.logout().logoutUrl("/logout").logoutSuccessHandler(logoutHandle()).permitAll();
-        
+
         // rememberme
         http.rememberMe().rememberMeParameter("rememberme").tokenRepository(persistentTokenRepository()).tokenValiditySeconds(1209600);
 
@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected UserDetailService userDetailsService() {
 		return new UserDetailService();
 	}
-	
+
 	/**
 	 * rememberme 数据库配置
 	 * @return JdbcTokenRepositoryImpl

@@ -16,5 +16,5 @@ public interface GuserMapper {
 	@Insert("INSERT INTO guser (id, ename, cname, pwd, email, gender) VALUES (#{id}, #{ename}, #{cname}, #{pwd}, #{email}, #{gender})")
 	public void addGuser(Guser u);
 
-	
+
 }
