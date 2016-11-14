@@ -1,11 +1,10 @@
 package com.spring.controllers;
 
-import java.io.PrintWriter;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.spring.model.Section;
+import com.spring.services.SectionService;
+import com.utils.Paramer;
+import com.utils.RegexUtil;
+import com.utils.RespsonData;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.annotation.Scope;
@@ -17,11 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.model.Section;
-import com.spring.services.SectionService;
-import com.utils.Paramer;
-import com.utils.RegexUtil;
-import com.utils.RespsonData;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 /**
  * @description 章节配置
@@ -79,7 +77,7 @@ public class SectionController {
 	public Object expSectionConfig(@ModelAttribute Section sc, HttpServletRequest req, HttpServletResponse res) {
 		PrintWriter writer = null;
 		try {
-//			res.setHeader("Content-Disposition", "attachment; filename="+RegexUtil.encodingFileName("导出.doc", req));
+			res.setHeader("Content-Disposition", "attachment; filename="+ RegexUtil.encodingFileName("导出.doc", req));
 	        res.setContentType("application/vnd.ms-word; charset=utf-8");
 			writer = res.getWriter();
 			String pt = (String)sectionService.expSectionConfig(sc);
