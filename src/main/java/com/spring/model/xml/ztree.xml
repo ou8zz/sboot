@@ -52,7 +52,14 @@
 	    from ztree z join grouptree g on z.id=g.ztreeid and g.groupid=#{id}
    	    order by z.node
 	</select>
-	
+
+    <!--spring security init -->
+    <select id="getRoleZtree" resultType="ztree" parameterType="ztree">
+        select g.ename name, z.url from (select * from ugroup where gtype='ROLE') g
+        left join grouptree gt on g.id=gt.groupid left join ztree z on gt.ztreeid=z.id
+        where z.url is not null
+    </select>
+
 	<!-- getIco -->
 	<select id="getIco" resultType="ztree" parameterType="ztree">
 	    SELECT * FROM ico

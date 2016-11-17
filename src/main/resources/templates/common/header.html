@@ -21,15 +21,15 @@
 	 th:inline="javascript" 表示JS中取值方式
 	 th:with 设置在script这个标签作用域下面的临时变量
  -->
-<script type="text/javascript" th:inline="javascript" th:with="u=${session.SPRING_SECURITY_CONTEXT.authentication.principal.guser}">
-var sessionUid = /*[[${u.id}]]*/;									// 取得session中的用户id
-var sessionUname = /*[[${u.ename}]]*/;								// 取得session中的用户名
+<script type="text/javascript" th:inline="javascript" th:with="u=${session.SPRING_SECURITY_CONTEXT!=null?session.SPRING_SECURITY_CONTEXT.authentication.principal.guser:null}">
+var sessionUid = /*[[*{(u==null?0:u.id)}]]*/;									// 取得session中的用户id
+var sessionUname = /*[[${u==null?'':u.ename}]]*/;								// 取得session中的用户名
 var contextPath = /*[[${#ctx.httpServletRequest.contextPath}]]*/;	// 获取当前server.contextPath
 </script>
 </head>
 
 <div th:fragment="htop">
-<div class="page-header navbar navbar-fixed-top" th:with="u=${session.SPRING_SECURITY_CONTEXT.authentication.principal.guser}">
+<div class="page-header navbar navbar-fixed-top" th:with="u=${session.SPRING_SECURITY_CONTEXT!=null?session.SPRING_SECURITY_CONTEXT.authentication.principal.guser:null}">
 	<!-- BEGIN HEADER INNER -->
 	<div class="page-header-inner">
 		<!-- BEGIN LOGO -->
@@ -278,7 +278,7 @@ var contextPath = /*[[${#ctx.httpServletRequest.contextPath}]]*/;	// 获取当�
 					<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 <!-- 					<img alt="" class="img-circle" src="../global/layout/img/avatar3_small.jpg"/> -->
 					<i class="icon-user"></i>
-					<span class="username username-hide-on-mobile" th:text="${u.cname}">user</span>
+					<span class="username username-hide-on-mobile" th:text="*{u!=null?u.ename:'未登录'}">user</span>
 					<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="dropdown-menu dropdown-menu-default">

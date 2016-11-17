@@ -69,7 +69,7 @@
 	
 	<!-- 添加用户权限 -->
 	<insert id="addUserGroupByUid" parameterType="guser">
-		insert into usergroup (userid, gid) select #{id}, #{dptId} from dual union all select #{id}, #{roleId} from dual
+		insert into usergroup (userid, gid) select ${id}, ${dptId} from dual union all select ${id}, ${roleId} from dual
 	</insert>
 </mapper>
 

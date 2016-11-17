@@ -46,8 +46,8 @@ public class GuserServiceImp implements GuserService {
 	
 	@Override
 	public void editUserUgroup(Guser u) {
-		sqlSession.delete("delUserGroupByUid", u.getId());
-		sqlSession.insert("addUserGroupByUid", u);
+		sqlSession.delete("guser.delUserGroupByUid", u.getId());
+		sqlSession.insert("guser.addUserGroupByUid", u);
 	}
 
 	@Override
